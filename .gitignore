@@ -1,0 +1,6 @@
+!*.secret
+result
+tmp
+*~
+
+*.qcow
