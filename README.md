@@ -3,7 +3,19 @@ You can test it by running
 ```nix
 nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli
 ```
-
+To pass flags and options you need to run the command like this:
+```nix
+nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- <flags and options>
+```
+Examples:
+```nix
+#To check the version
+nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- --version
+nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- -V
+#To list local and remote mods
+nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- list
+nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- list remote
+```
 ## How to Install in the System
 Imagining you have a system configuration using flakes, following [this style](https://github.com/ShoosGun/dotfiles), all you need to do is:
 
