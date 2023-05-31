@@ -14,13 +14,13 @@ rustPlatform.buildRustPackage rec {
     owner = "Bwc9876";
     repo = "ow-mod-man";
     rev = "cli_v${version}";
-    sha256 = "";
+    sha256 = "sha256-C7lMfsfP25RFi70U6hppR7q23/bYlcZWWTCLV7yWkIA=";
   };
 
   cargoLock = {
     lockFile = ./Cargo.lock;
     outputHashes = {
-      "tauri-plugin-fs-watch-0.1.0" = "sha256-Ei0j7UNzsK45c8fEV8Yw3pyf4oSG5EYgLB4BRfafq6A=";
+      "tauri-plugin-fs-watch-0.0.0" = "sha256-sc4qreV0MiVgpaiAOr/S9XUktkeHPRM8ZA+F+GY8CS8=";
     };
   };
 
