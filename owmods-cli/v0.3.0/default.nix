@@ -14,7 +14,7 @@ rustPlatform.buildRustPackage rec {
     owner = "Bwc9876";
     repo = "ow-mod-man";
     rev = "cli_v${version}";
-    sha256 = "";
+    #sha256 = ;
   };
 
   cargoLock = {
