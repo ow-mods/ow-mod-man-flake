@@ -14,12 +14,13 @@
           inherit system;
         };
 
-        owmods-cli' = pkgs.callPackage ./owmods-cli/default.nix {};
+        owmods-cli-v0_2_0 = pkgs.callPackage ./owmods-cli/v0.2.0/default.nix {};
 
       in rec {
         # For `nix build` & `nix run`:
         packages = rec {
-          owmods-cli = owmods-cli';
+          owmods-cli_0_2_0 = owmods-cli-v0_2_0;
+          owmods-cli = owmods-cli_0_2_0;
           default = owmods-cli;
         };
         # For `nix develop`:
