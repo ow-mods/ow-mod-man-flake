@@ -1,6 +1,10 @@
-##
+## How to test the program
+You can test it by running
+```nix
+nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli
+```
 
-## How to Install a version
+## How to Install in the System
 Imagining you have a system configuration using flakes, following [this style](https://github.com/ShoosGun/dotfiles), all you need to do is:
 
 - 1: Add the flake in the inputs, and the outputs
@@ -20,9 +24,9 @@ outputs = { nixpkgs, home-manager, ow-mod-man, ... }@inputs: #we need the '@inpu
 - 2: Pass the flake in your packages, for home-manager you would do:
 ```nix
 home-manager.lib.homeManagerConfiguration {
-  ...
+  #...
   extraSpecialArgs.inputs = inputs; # inside your homeManagerConfiguration you need to add this line
-  ...
+  #...
 };
 ```
 And in your `home.nix` add to the input `inputs`:
@@ -33,9 +37,9 @@ And in your `home.nix` add to the input `inputs`:
 For the nixos configuration you would do:
 ```nix
 nixosSystem {
-  ...
+  #...
   specialArgs.inputs = inputs; # inside your nixosSystem you need to add this line
-  ...
+  #...
 };
 ```
 
