@@ -14,7 +14,7 @@
           inherit system;
         };
 
-        owmods-cli' = pkgs.callPackage ./default.nix {};
+        owmods-cli' = pkgs.callPackage ./owmods-cli/default.nix {};
 
       in rec {
         # For `nix build` & `nix run`:
