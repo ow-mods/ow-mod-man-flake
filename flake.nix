@@ -74,6 +74,11 @@
           owmods-gui = owmods-gui_0_6_1;
           default = owmods-cli;
         };
+        apps = {
+          type = "app";
+          program = "${self.packages.${system}.owmods-gui}/bin/outer-wilds-mod-manager";
+        };
+
         # For `nix develop`:
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ rustc cargo openssl libsoup ];

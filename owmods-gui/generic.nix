@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/Bwc9876/ow-mod-man/tree/main/owmods_gui";
     downloadPage = "https://github.com/Bwc9876/ow-mod-man/releases/tag/gui_v${version}";
     changelog = "https://github.com/Bwc9876/ow-mod-man/releases/tag/gui_v${version}";
-    mainProgram = "owmods";
+    mainProgram = "${fileName}";
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
     platforms = platforms.linux;
     license = licenses.gpl3;
