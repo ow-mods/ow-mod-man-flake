@@ -34,8 +34,14 @@ stdenv.mkDerivation rec {
   ];
 
   unpackCmd = "dpkg-deb -x $curSrc source";
+  
+  installPhase = ''
+    mkdir -p $out/bin
+    cp -r usr $out
+    cp -r usr/share $out/share
+    ln -s $out/usr/bin/owmods-gui $out/bin/owmods-gui
+  '';
 
-  installPhase = "mv usr $out";
   meta = with lib; {
     description = "GUI version of the mod manager for Outer Wilds Mod Loader";
     homepage = "https://github.com/Bwc9876/ow-mod-man/tree/main/owmods_gui";
