@@ -1,4 +1,11 @@
-## How to test the program
+# ow-mod-man-flake
+
+Flake to easily install the [outer wilds mod manager](https://github.com/Bwc9876/ow-mod-man) (both cli and gui versions) in nix.
+
+## Prerequisites
+While the tools by them selfs, the manager calls .Net Framework programs, so to have it fully functional you need to enable [mono](https://search.nixos.org/packages?show=mono).
+
+## How to Test the Program
 
 ### Testing owmods-cli
 You can test it by running
