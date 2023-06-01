@@ -1,5 +1,9 @@
 { lib
 , pkg-config
+, version
+, sha256
+, lockFile ? ./Cargo-${version}.lock
+, outputHashes
 , openssl
 , libsoup
 , fetchFromGitHub
@@ -8,20 +12,18 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "owmods-cli";
-  version = "0.3.1";
+  inherit version;
 
   src = fetchFromGitHub {
+    inherit sha256;
     owner = "Bwc9876";
     repo = "ow-mod-man";
     rev = "cli_v${version}";
-    sha256 = "sha256-E2HjA4Ze+6jbV6r/e5faYxvWNXfRckZfvyplvs/YyWM=";
   };
 
   cargoLock = {
-    lockFile = ./Cargo.lock;
-    outputHashes = {
-      "tauri-plugin-fs-watch-0.1.0" = "sha256-nshM+GKvKrtskE7MwHCeqdTpoNaaKwKYIhObNMHfUt8=";
-    };
+    inherit lockFile;
+    inherit outputHashes;
   };
 
   nativeBuildInputs = [

@@ -13,16 +13,32 @@
         pkgs = (import nixpkgs) {
           inherit system;
         };
-
-        owmods-cli-v0_2_0 = pkgs.callPackage ./owmods-cli/v0.2.0/default.nix {};
-        owmods-cli-v0_3_0 = pkgs.callPackage ./owmods-cli/v0.3.0/default.nix {};
-        owmods-cli-v0_3_1 = pkgs.callPackage ./owmods-cli/v0.3.1/default.nix {};
-        owmods-cli-v0_4_0 = pkgs.callPackage ./owmods-cli/v0.4.0/default.nix {};
-        owmods-cli-v0_5_0 = pkgs.callPackage ./owmods-cli/v0.5.0/default.nix {};
-        owmods-cli-v0_5_1 = pkgs.callPackage ./owmods-cli/v0.5.1/default.nix {};
-        owmods-cli-v0_6_0 = pkgs.callPackage ./owmods-cli/v0.6.0/default.nix {};
-        owmods-cli-v0_6_1 = pkgs.callPackage ./owmods-cli/v0.6.1/default.nix {};
-
+        #cli version
+        owmods-cli-v0_2_0 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.2.0";
+                                                                        sha256="sha256-FtfGn6YzjwLn5gGOuG2nKR93wmR4wUYNou3oZiVG+zY=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.1.0" = "sha256-Ei0j7UNzsK45c8fEV8Yw3pyf4oSG5EYgLB4BRfafq6A=";};});
+        owmods-cli-v0_3_0 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.3.0";
+                                                                        sha256="sha256-i2x8YQAd83bzzcCGJzXBlCAPDJEBypXYE7Oxw2HEaQ0=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.1.0" = "sha256-nshM+GKvKrtskE7MwHCeqdTpoNaaKwKYIhObNMHfUt8=";};});
+        owmods-cli-v0_3_1 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.3.1";
+                                                                        sha256="sha256-E2HjA4Ze+6jbV6r/e5faYxvWNXfRckZfvyplvs/YyWM=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.1.0" = "sha256-nshM+GKvKrtskE7MwHCeqdTpoNaaKwKYIhObNMHfUt8=";};});
+        owmods-cli-v0_4_0 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.4.0";
+                                                                        sha256="sha256-C7lMfsfP25RFi70U6hppR7q23/bYlcZWWTCLV7yWkIA=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.0.0" = "sha256-sc4qreV0MiVgpaiAOr/S9XUktkeHPRM8ZA+F+GY8CS8=";};});
+        owmods-cli-v0_5_0 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.5.0";
+                                                                        sha256="sha256-Bq29D0LrVrgWAVrb+xJAjSsxFDMVTEYDUDd2xYHUEmU=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.0.0" = "sha256-Ej5TaHR7qS0lTV2XB6VG+885Z4xbT28d0UWYgD76CWU=";};});
+        owmods-cli-v0_5_1 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.5.1";
+                                                                        sha256="sha256-1qa+Rb/4B/S1vdMzmP8+QfP2h84VczRGtDZi9KlznXA=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.0.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
+        owmods-cli-v0_6_0 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.6.0";
+                                                                        sha256="sha256-yuiC/BbjGjynOp9MUAhZGL6KBf4f4HUl1KYcKHlCNg0=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.0.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
+        owmods-cli-v0_6_1 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.6.1";
+                                                                        sha256="sha256-WpTJ8lzocCLrxmf7qM/hflHYQHzFlVmfwRwCEllOw/g=";
+                                                                        outputHashes={"tauri-plugin-fs-watch-0.0.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
+        #gui version
         owmods-gui-v0_2_0 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.2.0";
                                                                         fileName = "ow-mod-manager";
                                                                         sha256="sha256-2oeK1IetR5Ui9zhocP8r1nGIs7hSGp88tzc4ck4Jwo4=";});
@@ -73,12 +89,7 @@
           owmods-cli = owmods-cli_0_6_1;
           owmods-gui = owmods-gui_0_6_1;
           default = owmods-cli;
-        };
-        apps = {
-          type = "app";
-          program = "${self.packages.${system}.owmods-gui}/bin/outer-wilds-mod-manager";
-        };
-
+        };        
         # For `nix develop`:
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ rustc cargo openssl libsoup ];
