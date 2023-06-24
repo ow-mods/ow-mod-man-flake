@@ -38,7 +38,10 @@
         owmods-cli-v0_6_1 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.6.1";
                                                                         sha256="sha256-WpTJ8lzocCLrxmf7qM/hflHYQHzFlVmfwRwCEllOw/g=";
                                                                         outputHashes={"tauri-plugin-fs-watch-0.0.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
-        #gui version
+        owmods-cli-v0_7_0 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.7.0";
+                                                                        sha256="sha256-1JbPYrGg9zI7Z7eCYAWyqBbjYIWOnougorxmlh8BYLo=";
+                                                                        outputHashes={"tauri-plugin-window-state-0.1.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
+        ##gui version
         owmods-gui-v0_2_0 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.2.0";
                                                                         fileName = "ow-mod-manager";
                                                                         sha256="sha256-2oeK1IetR5Ui9zhocP8r1nGIs7hSGp88tzc4ck4Jwo4=";});
@@ -62,6 +65,9 @@
                                                                         sha256="sha256-rm7KZEGkEH8z8Jb39Qc3tlt1xSMFEAPnkHuoGQ+ad/U=";});
         owmods-gui-v0_6_1 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.6.1";
                                                                         sha256="sha256-lMBUrVfAeTwwtwyGY2J331O3dODSUK/YjF+1V1bRggI=";});
+        owmods-gui-v0_7_0 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.7.0";
+                                                                        sha256="sha256-tqQ3DfctOdLpmIviqO1QINWdCwJObVsDLJxdLu9xCeo=";});
+
 
       in rec {
         # For `nix build` & `nix run`:
@@ -74,6 +80,7 @@
           owmods-cli_0_5_1 = owmods-cli-v0_5_1;
           owmods-cli_0_6_0 = owmods-cli-v0_6_0;
           owmods-cli_0_6_1 = owmods-cli-v0_6_1;
+          owmods-cli_0_7_0 = owmods-cli-v0_7_0;
 
           owmods-gui_0_2_0 = owmods-gui-v0_2_0;
           owmods-gui_0_2_1 = owmods-gui-v0_2_1;
@@ -85,9 +92,10 @@
           owmods-gui_0_5_1 = owmods-gui-v0_5_1;
           owmods-gui_0_6_0 = owmods-gui-v0_6_0;
           owmods-gui_0_6_1 = owmods-gui-v0_6_1;
+          owmods-gui_0_7_0 = owmods-gui-v0_7_0;
 
-          owmods-cli = owmods-cli_0_6_1;
-          owmods-gui = owmods-gui_0_6_1;
+          owmods-cli = owmods-cli_0_7_0;
+          owmods-gui = owmods-gui_0_7_0;
           default = owmods-cli;
         };        
         # For `nix develop`:

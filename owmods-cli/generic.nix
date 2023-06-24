@@ -3,7 +3,7 @@
 , version
 , sha256
 , lockFile ? ./Cargo-${version}.lock
-, outputHashes
+, outputHashes ? {}
 , openssl
 , libsoup
 , fetchFromGitHub
