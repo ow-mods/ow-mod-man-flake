@@ -42,7 +42,7 @@
                                                                         sha256="sha256-1JbPYrGg9zI7Z7eCYAWyqBbjYIWOnougorxmlh8BYLo=";
                                                                         outputHashes={"tauri-plugin-window-state-0.1.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
         owmods-cli-v0_7_1 = pkgs.callPackage ./owmods-cli/generic.nix ({version="0.7.1";
-                                                                        sha256="";
+                                                                        sha256="sha256-cUeSGMGZoHL/x3G5+1moBrOuo+8PEzkpAafenFekQEA=";
                                                                         outputHashes={"tauri-plugin-window-state-0.1.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};});
         ##gui version
         owmods-gui-v0_2_0 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.2.0";
@@ -71,7 +71,7 @@
         owmods-gui-v0_7_0 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.7.0";
                                                                         sha256="sha256-tqQ3DfctOdLpmIviqO1QINWdCwJObVsDLJxdLu9xCeo=";});
         owmods-gui-v0_7_1 = pkgs.callPackage ./owmods-gui/generic.nix ({version="0.7.1";
-                                                                        sha256="";});
+                                                                        sha256="sha256-dbjVmY47HsvwIS8GyFANyB2TlF6RoB0Hi9C6Ug6CLoc=";});
 
 
       in rec {
