@@ -10,6 +10,7 @@
 , openssl_1_1
 , webkitgtk
 , wrapGAppsHook
+, mono
 }:
 
 stdenv.mkDerivation rec {
@@ -31,6 +32,7 @@ stdenv.mkDerivation rec {
     openssl_1_1
     webkitgtk
     wrapGAppsHook
+    mono
   ];
 
   unpackCmd = "dpkg-deb -x $curSrc source";

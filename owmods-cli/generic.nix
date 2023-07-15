@@ -6,6 +6,7 @@
 , outputHashes ? {}
 , openssl
 , libsoup
+, mono
 , fetchFromGitHub
 , installShellFiles
 , rustPlatform }:
@@ -34,6 +35,7 @@ rustPlatform.buildRustPackage rec {
   buildInputs = [
     openssl
     libsoup
+    mono
   ];
 
   buildAndTestSubdir = "owmods_cli";
