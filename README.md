@@ -100,8 +100,10 @@ owmods-cli_0_6_0
 owmods-cli_0_6_1
 owmods-cli_0_7_0
 owmods-cli_0_7_1
+owmods-cli_0_7_2
+owmods-cli_0_8_0
 ```
-or keep it as `owmods-cli` to always use the latest version (v0.7.1).
+or keep it as `owmods-cli` to always use the latest version (v0.8.0).
 
 For owmods-gui, [like mentioned in here](#testing-owmods-gui), you need to allow insecure packages (for now), to do this [follow the manual](https://nixos.org/manual/nixpkgs/stable/#sec-allow-insecure) to allow the `openssl-1.1.1t` package. 
 If you are building your system with flakes, you will need to run your `nix build` with the `--impure` flag and `export NIXPKGS_ALLOW_INSECURE=1` exported.
