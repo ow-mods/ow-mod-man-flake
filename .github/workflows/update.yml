@@ -19,17 +19,17 @@ jobs:
       - name: Get Latest Release
         id: get-latest-release
         run: |
-          echo "latestRelease=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases| jq -r ".[0]")" >> $GITHUB_OUTPUT
-          echo "latestTag=$(echo $latestRelease | jq -r ".tag_name")" >> $GITHUB_OUTPUT
+          echo 'latestRelease=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases| jq -r ".[0]")' >> $GITHUB_OUTPUT
+          echo  ´latestTag=$(echo $latestRelease | jq -r ".tag_name")' >> $GITHUB_OUTPUT
           
       - name: Check For Release
         id: check-release-type
-        run: echo "right-type=steps.get-latest-release.outputs.latestTag == *"gui_v"*]]" >> $GITHUB_OUTPUT
+        run: echo 'right-type=steps.get-latest-release.outputs.latestTag == *"gui_v"*]]' >> $GITHUB_OUTPUT
         
       - name: Check For Release Age
         id: check-release-age
         run: |
-          echo "exists=$[[steps.check-release-type.outputs.right-type]] && echo ([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false) || echo false" >> $GITHUB_OUTPUT
+          echo 'exists=$[[steps.check-release-type.outputs.right-type]] && echo ([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false) || echo false' >> $GITHUB_OUTPUT
   update:
     runs-on: ubuntu-latest
     if: ${{ needs.pre_job.outputs.exists == 'true'  || github.event_name != 'schedule' }}
