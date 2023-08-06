@@ -1,30 +1,30 @@
 # ow-mod-man-flake
 
-Flake to easily install the [outer wilds mod manager](https://github.com/Bwc9876/ow-mod-man) (both cli and gui versions) in nix.
+Flake to easily install the [outer wilds mod manager](https://github.com/ow-mods/ow-mod-man) (both cli and gui versions) in nix.
 
 ## How to Test the Program
 
 ### Testing owmods-cli
 You can test it by running
 ```sh
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli
+nix run github:loco-choco/ow-mod-man-flake#owmods-cli
 ```
 To pass flags and options you need to run the command like this:
 ```sh
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- <flags and options>
+nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- <flags and options>
 ```
 Examples:
 ```sh
 #To check the version
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- --version
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- -V
+nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- --version
+nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- -V
 #To list local and remote mods
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- list
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-cli -- list remote
+nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- list
+nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- list remote
 ```
 
 ### Testing owmods-gui
-Because it uses tauri, and it is, for now (version 1.3), using `openssl-1.1.1t` (an insecure package), trying to run `nix run github:ShoosGun/ow-mod-man-flake/main#owmods-gui` will fail with a message saying the derivation uses insecure packages. To run it then you first need to do:
+Because it uses tauri, and it is, for now (version 1.3), using `openssl-1.1.1t` (an insecure package), trying to run `nix run github:loco-choco/ow-mod-man-flake#owmods-gui` will fail with a message saying the derivation uses insecure packages. To run it then you first need to do:
 
 ```sh
 export NIXPKGS_ALLOW_INSECURE=1
@@ -32,13 +32,13 @@ export NIXPKGS_ALLOW_INSECURE=1
 
 Then run:
 ```sh
-nix run github:ShoosGun/ow-mod-man-flake/main#owmods-gui --impure
+nix run github:loco-choco/ow-mod-man-flake#owmods-gui --impure
 ```
 
 Now, you should have the latest version of the gui version running.
 
 ## How to Install in the System
-Imagining you have a system configuration using flakes, following [this style](https://github.com/ShoosGun/dotfiles), all you need to do is:
+Imagining you have a system configuration using flakes, following [this style](https://github.com/loco-choco/dotfiles), all you need to do is:
 
 - 1: Add the flake in the inputs, and the outputs
 ```nix
@@ -47,7 +47,7 @@ inputs = {
   nixpkgs.url = "...";
   home-manager.url = "...";
   #Add these two lines
-  ow-mod-man.url = "github:ShoosGun/ow-mod-man-flake/main";
+  ow-mod-man.url = "github:loco-choco/ow-mod-man-flake";
   ow-mod-man.inputs.nixpkgs.follows = "nixpkgs"; #Makes the flake follow the package versions in your nixpkgs versions
 };
 
@@ -85,29 +85,13 @@ And in your `configuration.nix` add the inputs:
 ```nix
 inputs.ow-mod-man.packages.${system}.owmods-cli
 ```
-You can then specify one of the following versions
-```nix
-owmods-cli_0_2_0
-owmods-cli_0_3_0
-owmods-cli_0_3_1
-owmods-cli_0_4_0
-owmods-cli_0_5_0
-owmods-cli_0_5_1
-owmods-cli_0_6_0
-owmods-cli_0_6_1
-owmods-cli_0_7_0
-owmods-cli_0_7_1
-owmods-cli_0_7_2
-owmods-cli_0_8_0
-```
-or keep it as `owmods-cli` to always use the latest version (v0.8.0).
 
 For owmods-gui, [like mentioned in here](#testing-owmods-gui), you need to allow insecure packages (for now), to do this [follow the manual](https://nixos.org/manual/nixpkgs/stable/#sec-allow-insecure) to allow the `openssl-1.1.1t` package. 
 If you are building your system with flakes, you will need to run your `nix build` with the `--impure` flag and `export NIXPKGS_ALLOW_INSECURE=1` exported.
 
-You can also check what are the avaiable versions by running
+You can also check the current version by running
 ```shell
-nix flake show github:ShoosGun/ow-mod-man-flake/main
+nix flake show github:loco-choco/ow-mod-man-flake
 ```
 
 These steps were found in [this reddit post](https://www.reddit.com/r/NixOS/comments/omti3t/how_to_install_a_flake_package/).
