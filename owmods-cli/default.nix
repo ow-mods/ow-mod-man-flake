@@ -1,30 +1,25 @@
 { lib
 , pkg-config
-, version
-, sha256
-, lockFile ? ./Cargo-${version}.lock
-, outputHashes ? {}
 , openssl
 , libsoup
-, mono
 , fetchFromGitHub
 , installShellFiles
 , rustPlatform }:
 
 rustPlatform.buildRustPackage rec {
   pname = "owmods-cli";
-  inherit version;
+  version = "0.10.0";
 
   src = fetchFromGitHub {
-    inherit sha256;
-    owner = "Bwc9876";
+    owner = "ow-mods";
     repo = "ow-mod-man";
     rev = "cli_v${version}";
+    hash = "sha256-kumYLlp2LRqTQz23N9lriJJf7x2pPXbqqUvkiAhyMDY=";
   };
 
   cargoLock = {
-    inherit lockFile;
-    inherit outputHashes;
+    lockFile = ./Cargo.lock;
+    outputHashes = { "tauri-plugin-window-state-0.1.0" = "sha256-M6uGcf4UWAU+494wAK/r2ta1c3IZ07iaURLwJJR9F3U=";};
   };
 
   nativeBuildInputs = [
@@ -35,7 +30,6 @@ rustPlatform.buildRustPackage rec {
   buildInputs = [
     openssl
     libsoup
-    mono
   ];
 
   buildAndTestSubdir = "owmods_cli";
@@ -49,9 +43,9 @@ rustPlatform.buildRustPackage rec {
 
   meta = with lib; {
     description = "CLI version of the mod manager for Outer Wilds Mod Loader";
-    homepage = "https://github.com/Bwc9876/ow-mod-man/tree/main/owmods_cli";
-    downloadPage = "https://github.com/Bwc9876/ow-mod-man/releases/tag/cli_v${version}";
-    changelog = "https://github.com/Bwc9876/ow-mod-man/releases/tag/cli_v${version}";
+    homepage = "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_cli";
+    downloadPage = "https://github.com/ow-mods/ow-mod-man/releases/tag/cli_v${version}";
+    changelog = "https://github.com/ow-mods/ow-mod-man/releases/tag/cli_v${version}";
     mainProgram = "owmods";
     license = licenses.gpl3;
     maintainers = with maintainers; [ locochoco ];
