@@ -11,7 +11,7 @@
 
 stdenv.mkDerivation rec {
   pname = "owmods-gui";
-  version = "0.9.0";
+  version = "0.10.0";
 
   src = fetchurl {
     url = "https://github.com/Bwc9876/ow-mod-man/releases/download/gui_v${version}/outer-wilds-mod-manager_${version}_amd64.deb";
