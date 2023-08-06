@@ -36,7 +36,7 @@ jobs:
       
       - name: Result
         if: ${{ steps.out.output.exists == 'true' }}
-        run: echo "new version of the manager!"
+        run: echo "new version of the manager! 🥳"
   update:
     runs-on: ubuntu-latest
     if: ${{ needs.pre_job.output.exists == 'true'  || github.event_name != 'schedule' }}
