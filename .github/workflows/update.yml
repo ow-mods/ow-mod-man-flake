@@ -28,11 +28,18 @@ jobs:
         
       - name: Check For Release Age
         id: check-release-age
-        run: |
-          echo 'exists=$[[steps.check-release-type.outputs.right-type]] && echo ([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false) || echo false' >> $GITHUB_OUTPUT
+        run: echo 'new-release=$([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false)' >> $GITHUB_OUTPUT
+      
+      - name: Out
+        id: output
+        run: echo 'exists=$[[steps.check-release-type.outputs.right-type]] && echo steps.check-release-age || echo false' >> $GITHUB_OUTPUT
+      
+      - name: Result
+        if: ${{ steps.out.output.exists == 'true' }}
+        run: echo "new version of the manager!"
   update:
     runs-on: ubuntu-latest
-    if: ${{ needs.pre_job.outputs.exists == 'true'  || github.event_name != 'schedule' }}
+    if: ${{ needs.pre_job.output.exists == 'true'  || github.event_name != 'schedule' }}
     steps:
       - uses: actions/checkout@v3
 
