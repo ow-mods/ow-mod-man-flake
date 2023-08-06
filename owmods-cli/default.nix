@@ -8,7 +8,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "owmods-cli";
-  version = "0.10.0";
+  version = "0.8.0";
 
   src = fetchFromGitHub {
     owner = "ow-mods";
