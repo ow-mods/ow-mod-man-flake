@@ -1,19 +1,41 @@
 # worflow to call the update.sh script and create a PR based on the changes
 name: update
 on:
-  workflow_run:
-    workflows: ["new-release-trigger"]
-    types: [completed]
+  schedule:
+    - cron:  '*/10 * * * *'
     
   workflow_dispatch:
 
 jobs:
+  pre_job:
+    name: Check for New Releases
+    outputs:
+      exists: ${{ steps.out.outputs.exists }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: "actions/checkout@v3"
+
+      - name: Get Latest Release
+        id: get-latest-release
+        run: |
+          echo "latestRelease=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases| jq -r ".[0]")" >> $GITHUB_OUTPUT
+          echo "latestTag=$(echo $latestRelease | jq -r ".tag_name")" >> $GITHUB_OUTPUT
+          
+      - name: Check For Release
+        id: check-release-type
+        run: echo "right-type=steps.get-latest-release.outputs.latestTag == *"gui_v"*]]" >> $GITHUB_OUTPUT
+        
+      - name: Check For Release Age
+        id: check-release-age
+        run: |
+          echo "exists=$[[steps.check-release-type.outputs.right-type]] && echo ([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false) || echo false" >> $GITHUB_OUTPUT
   update:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ needs.pre_job.outputs.exists == 'true'  || github.event_name != 'schedule' }}
     steps:
       - uses: actions/checkout@v3
-        
+
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
