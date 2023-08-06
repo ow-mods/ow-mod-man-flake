@@ -1,0 +1,17 @@
+#idea from https://stackoverflow.com/questions/65499626/trigger-github-actions-if-push-in-another-repo
+name: new-release-trigger
+
+on:
+  schedule:
+    - cron:  '*/10 * * * *'
+
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check main repo for release
+        run: ./check-for-update.sh
