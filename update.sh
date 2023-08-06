@@ -23,7 +23,6 @@ updateCliHash()
 
     url="https://github.com/ow-mods/ow-mod-man/releases/cli_v$version"
     prefetchJson=$(nix-prefetch-github ow-mods ow-mod-man --rev cli_v$version)
-    echo $prefetchJson
     sha256="sha256-$(echo $prefetchJson | jq -r ".hash")"
 
     sed -i "s|hash = \"[a-zA-Z0-9\/+-=]*\";|hash = \"$sha256\";|g" "$dirname/owmods-cli/default.nix"
