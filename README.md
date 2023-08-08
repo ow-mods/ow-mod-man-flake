@@ -7,20 +7,20 @@ Flake to easily install the [outer wilds mod manager](https://github.com/ow-mods
 ### Testing owmods-cli
 You can test it by running
 ```sh
-nix run github:loco-choco/ow-mod-man-flake#owmods-cli
+nix run github:ow-mods/ow-mod-man-flake#owmods-cli
 ```
 To pass flags and options you need to run the command like this:
 ```sh
-nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- <flags and options>
+nix run github:ow-mods/ow-mod-man-flake#owmods-cli -- <flags and options>
 ```
 Examples:
 ```sh
 #To check the version
-nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- --version
-nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- -V
+nix run github:ow-mods/ow-mod-man-flake#owmods-cli -- --version
+nix run github:ow-mods/ow-mod-man-flake#owmods-cli -- -V
 #To list local and remote mods
-nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- list
-nix run github:loco-choco/ow-mod-man-flake#owmods-cli -- list remote
+nix run github:ow-mods/ow-mod-man-flake#owmods-cli -- list
+nix run github:ow-mods/ow-mod-man-flake#owmods-cli -- list remote
 ```
 
 ### Testing owmods-gui
@@ -32,12 +32,15 @@ export NIXPKGS_ALLOW_INSECURE=1
 
 Then run:
 ```sh
-nix run github:loco-choco/ow-mod-man-flake#owmods-gui --impure
+nix run github:ow-mods/ow-mod-man-flake#owmods-gui --impure
 ```
 
 Now, you should have the latest version of the gui version running.
 
 ## How to Install in the System
+
+### :exclamation: The cli version of the manager is now on the [unstable branch of nixpkgs](https://search.nixos.org/packages?channel=unstable&show=owmods-cli&from=0&size=50&sort=relevance&type=packages&query=owmods-cli), so you can install it from there! :exclamation:
+
 Imagining you have a system configuration using flakes, following [this style](https://github.com/loco-choco/dotfiles), all you need to do is:
 
 - 1: Add the flake in the inputs, and the outputs
@@ -47,7 +50,7 @@ inputs = {
   nixpkgs.url = "...";
   home-manager.url = "...";
   #Add these two lines
-  ow-mod-man.url = "github:loco-choco/ow-mod-man-flake";
+  ow-mod-man.url = "github:ow-mods/ow-mod-man-flake";
   ow-mod-man.inputs.nixpkgs.follows = "nixpkgs"; #Makes the flake follow the package versions in your nixpkgs versions
 };
 
@@ -91,7 +94,7 @@ If you are building your system with flakes, you will need to run your `nix buil
 
 You can also check the current version by running
 ```shell
-nix flake show github:loco-choco/ow-mod-man-flake
+nix flake show github:ow-mods/ow-mod-man-flake
 ```
 
 These steps were found in [this reddit post](https://www.reddit.com/r/NixOS/comments/omti3t/how_to_install_a_flake_package/).
