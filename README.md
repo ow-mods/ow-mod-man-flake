@@ -2,6 +2,8 @@
 
 Flake to easily install the [outer wilds mod manager](https://github.com/ow-mods/ow-mod-man) (both cli and gui versions) in nix.
 
+### ℹ️ The cli version of the manager is now on the [unstable branch of nixpkgs](https://search.nixos.org/packages?channel=unstable&show=owmods-cli&from=0&size=50&sort=relevance&type=packages&query=owmods-cli), so you can install it from there!
+
 ## How to Test the Program
 
 ### Testing owmods-cli
@@ -38,8 +40,6 @@ nix run github:ow-mods/ow-mod-man-flake#owmods-gui --impure
 Now, you should have the latest version of the gui version running.
 
 ## How to Install in the System
-
-### :exclamation: The cli version of the manager is now on the [unstable branch of nixpkgs](https://search.nixos.org/packages?channel=unstable&show=owmods-cli&from=0&size=50&sort=relevance&type=packages&query=owmods-cli), so you can install it from there! :exclamation:
 
 Imagining you have a system configuration using flakes, following [this style](https://github.com/loco-choco/dotfiles), all you need to do is:
 
