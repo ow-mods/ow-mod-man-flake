@@ -21,20 +21,20 @@ jobs:
         run: |
           echo 'latestRelease=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases| jq -r ".[0]")' >> $GITHUB_OUTPUT
           echo  'latestTag=$(echo $latestRelease | jq -r ".tag_name")' >> $GITHUB_OUTPUT
-          
+          echo latestTag
       - name: Check For Release
         id: check-release-type
         run: echo 'right-type=steps.get-latest-release.outputs.latestTag == *"gui_v"*]]' >> $GITHUB_OUTPUT
         
       - name: Check For Release Age
         id: check-release-age
-        run: echo 'new-release=$([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false)' >> $GITHUB_OUTPUT
-          
+        run: | 
+          echo 'new-release=$([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false)' >> $GITHUB_OUTPUT
+          echo new-release
       - name: Out
         id: output
         run: |
           echo 'exists=$[[steps.check-release-type.outputs.right-type]] && echo steps.check-release-age || echo false' >> $GITHUB_OUTPUT
-          echo "recent release: ${steps.check-release-age}"
       - name: Result
         if: ${{ steps.out.output.exists == 'true' }}
         run: echo "new version of the manager! 🥳"
