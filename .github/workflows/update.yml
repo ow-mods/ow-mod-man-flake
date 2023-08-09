@@ -20,6 +20,7 @@ jobs:
         id: output
         run: |
           echo ""exists = $((curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases) | jq -r '(((now - (.[0].published_at | fromdateiso8601)) / (60*60*2) | trunc) == 0) and (.[0].tag_name | contains("gui_v"))')"" >> $GITHUB_OUTPUT
+          echo "exists? $exists"
       - name: Result
         if: ${{ steps.out.output.exists == 'true' }}
         run: echo "new version of the manager! 🥳"
