@@ -24,7 +24,7 @@ jobs:
         id: result
         #run: | 
         #  echo "${{ steps.check-age.outputs.exists }}"
-        if: ${{ steps.out.check-age.exists == 'true' }}
+        if: ${{ steps.out.check-age.outputs.exists == 'true' }}
         run: echo "new version of the manager! 🥳"
   update:
     runs-on: ubuntu-latest
