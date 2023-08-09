@@ -21,7 +21,7 @@ jobs:
         run: |
           echo 'latestRelease=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases| jq -r ".[0]")' >> $GITHUB_OUTPUT
           echo  'latestTag=$(echo $latestRelease | jq -r ".tag_name")' >> $GITHUB_OUTPUT
-          echo "$latestTag"
+          echo "$(latestTag)"
       - name: Check For Release
         id: check-release-type
         run: echo 'right-type=steps.get-latest-release.outputs.latestTag == *"gui_v"*]]' >> $GITHUB_OUTPUT
