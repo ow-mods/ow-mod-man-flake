@@ -19,7 +19,7 @@ jobs:
       - name: Check For Release Age
         id: output
         run: |
-          echo 'exists=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases) | jq -r '(((now - (.[0].published_at | fromdateiso8601)) / (60*60) | trunc) == 0) and (.[0].tag_name | contains("gui_v"))'' >> $GITHUB_OUTPUT
+          echo $(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases) | jq -r '(((now - (.[0].published_at | fromdateiso8601)) / (60*60) | trunc) == 0) and (.[0].tag_name | contains("gui_v"))' >> $GITHUB_OUTPUT
       - name: Result
         if: ${{ steps.out.output.exists == 'true' }}
         run: echo "new version of the manager! 🥳"
