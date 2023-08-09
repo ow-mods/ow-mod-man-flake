@@ -32,7 +32,7 @@ jobs:
         run: | 
           echo 'new-release=$([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false)' >> $GITHUB_OUTPUT
           echo "release age :"
-          echo "$(steps.get-latest-release.outputs.latestRelease | jq -r "now - (.published_at | fromdateiso8601))" 
+          echo "$(steps.get-latest-release.outputs.latestRelease | jq -r 'now - (.published_at | fromdateiso8601)')" 
       - name: Out
         id: output
         run: echo 'exists=$[[steps.check-release-type.outputs.right-type]] && echo steps.check-release-age || echo false' >> $GITHUB_OUTPUT
