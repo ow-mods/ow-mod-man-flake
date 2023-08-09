@@ -15,26 +15,11 @@ jobs:
     steps:
       - name: Checkout
         uses: "actions/checkout@v3"
-
-      - name: Get Latest Release
-        id: get-latest-release
-        run: |
-          echo 'latestRelease=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases| jq -r ".[0]")' >> $GITHUB_OUTPUT
-          echo  'latestTag=$(echo $latestRelease | jq -r ".tag_name")' >> $GITHUB_OUTPUT
-          echo "$(latestTag)"
-      - name: Check For Release
-        id: check-release-type
-        run: echo 'right-type=steps.get-latest-release.outputs.latestTag == *"gui_v"*]]' >> $GITHUB_OUTPUT
         
       - name: Check For Release Age
-        id: check-release-age
-        run: | 
-          echo 'new-release=$([[steps.get-latest-release.outputs.latestRelease | jq -r "((now - (.published_at | fromdateiso8601) )  / (60*20)  | trunc) == 0]] && echo true || echo false)' >> $GITHUB_OUTPUT
-          echo "$new-release"
-      - name: Out
         id: output
         run: |
-          echo 'exists=$[[steps.check-release-type.outputs.right-type]] && echo steps.check-release-age || echo false' >> $GITHUB_OUTPUT
+          echo 'exists=$(curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases) | jq -r '(((now - (.[0].published_at | fromdateiso8601)) / (60*60) | trunc) == 0) and (.[0].tag_name | contains("gui_v"))'' >> $GITHUB_OUTPUT
       - name: Result
         if: ${{ steps.out.output.exists == 'true' }}
         run: echo "new version of the manager! 🥳"
