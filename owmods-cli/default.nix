@@ -8,13 +8,13 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "owmods-cli";
-  version = "0.11.1";
+  version = "0.11.2";
 
   src = fetchFromGitHub {
     owner = "ow-mods";
     repo = "ow-mod-man";
     rev = "cli_v${version}";
-    hash = "sha256-bn8Zf6qBYn8eEibVcbZqJNqVhy67l1JJzXdIyRUIPFE=";
+    hash = "sha256-kjHGuVYX9pKy2I+m347cEdPj6MjCDz8vz2Cnce9+z90=";
   };
 
   cargoLock = {
