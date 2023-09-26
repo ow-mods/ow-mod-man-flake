@@ -11,11 +11,11 @@
 
 stdenv.mkDerivation rec {
   pname = "owmods-gui";
-  version = "0.11.2";
+  version = "0.11.3";
 
   src = fetchurl {
     url = "https://github.com/Bwc9876/ow-mod-man/releases/download/gui_v${version}/outer-wilds-mod-manager_${version}_amd64.deb";
-    hash = "sha256-2tkJH1CYhPbv6VFVwMdilTkMtb4b72pbi7XjC3fIgtI=";
+    hash = "sha256-D+rnF40e1xpwKeMvyiOuhMSJ1+JlDKq5c195iam3d2Y=";
   };
 
   nativeBuildInputs = [

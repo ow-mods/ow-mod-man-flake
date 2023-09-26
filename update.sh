@@ -43,7 +43,8 @@ currentVersion="$(expr $currentVersionName : 'owmods-gui-\(.*\)')"
 echo "current version: ${currentVersion}" 
 
 latestTag=$(curl https://api.github.com/repos/ow-mods/ow-mod-man/releases | jq -r ".[0].tag_name")
-latestVersion="$(expr $latestTag : 'gui_v\(.*\)')"
+#latestVersion="$(expr $latestTag : 'v\(.*\)')"
+latestVersion=${latestTag#*v} 
 echo "latest version: ${latestVersion}"
 
 if [[ "$currentVersion" == "$latestVersion" ]]; then
