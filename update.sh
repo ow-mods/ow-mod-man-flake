@@ -23,9 +23,9 @@ updateCliHash()
 
     url="https://github.com/ow-mods/ow-mod-man/releases/cli_v$version"
     prefetchJson=$(nix-prefetch-github ow-mods ow-mod-man --rev cli_v$version)
-    sha256="$(echo $prefetchJson | jq -r ".hash")"
+    sha256="$(echo $prefetchJson | jq -r ".sha256")"
 
-    sed -i "s|hash = \"[a-zA-Z0-9\/+-=]*\";|hash = \"$sha256\";|g" "$dirname/owmods-cli/default.nix"
+    sed -i "s|hash = \"[a-zA-Z0-9\/+-=]*\";|hash = \"sha256-$sha256\";|g" "$dirname/owmods-cli/default.nix"
 
     #download and replace funny .lock file
     wget https://raw.githubusercontent.com/ow-mods/ow-mod-man/cli_v$version/Cargo.lock -q -O $dirname/owmods-cli/Cargo.lock
@@ -43,7 +43,6 @@ currentVersion="$(expr $currentVersionName : 'owmods-gui-\(.*\)')"
 echo "current version: ${currentVersion}" 
 
 latestTag=$(curl https://api.github.com/repos/ow-mods/ow-mod-man/releases | jq -r ".[0].tag_name")
-#latestVersion="$(expr $latestTag : 'v\(.*\)')"
 latestVersion=${latestTag#*v} 
 echo "latest version: ${latestVersion}"
 
