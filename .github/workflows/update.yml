@@ -19,7 +19,7 @@ jobs:
       - name: Check For Release Age
         id: check-age
         run: |
-          echo ""exists=$((curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases) | jq -r '((now - (.[0].published_at | fromdateiso8601)) / (60*60*24*3) | trunc) == 0)')"" >> $GITHUB_OUTPUT
+          echo ""exists=$((curl -s https://api.github.com/repos/ow-mods/ow-mod-man/releases) | jq -r '(((now - (.[0].published_at | fromdateiso8601)) / (60*60*24*3) | trunc) == 0)')"" >> $GITHUB_OUTPUT
       - name: Result
         id: result
         #run: | 
